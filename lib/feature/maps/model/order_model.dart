@@ -3,24 +3,21 @@ part 'order_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class OrderStatus {
-  String? status;
+  final String? status;
+  final String? kurye;
 
-  OrderStatus({
-    this.status,
-  });
+  OrderStatus({this.status, this.kurye});
 
   factory OrderStatus.fromJson(Map<String, dynamic> data) => _$OrderStatusFromJson(data);
 }
 
 @JsonSerializable()
 class LocationModel {
-  String? kurye;
-  String? latitude;
-  String? longitude;
-  int? estimated;
+  final String? latitude;
+  final String? longitude;
+  final int? estimated;
 
   LocationModel({
-    this.kurye,
     this.latitude,
     this.longitude,
     this.estimated,

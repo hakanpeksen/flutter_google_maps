@@ -1,36 +1,52 @@
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mobx/mobx.dart';
 
-part 'map_view_model.g.dart';
+import '../../../product/constants/app_constants.dart';
+import '../model/order_model.dart';
+import '../widgets/delivery_status_card_widget.dart';
 
-class MapViewModel = _MapViewModelBase with _$MapViewModel;
+class MapViewModel extends ChangeNotifier {
+  GoogleMapController? controller;
+  Marker? marker;
+  late BitmapDescriptor _markerIcon;
+  LatLng initialCameraPosition = const LatLng(40.9817, 29.0310);
 
-abstract class _MapViewModelBase with Store {
-  //final ILocationService locationService;
-  // _MapViewModelBase(this.locationService);
-  _MapViewModelBase();
+  /// [DeliveryStatusCardWidget] Status list
+  int currentIndex = -1;
 
-  LatLng initialCameraPosition = const LatLng(40.9817, 29.0310); // caferağa
-  // final LatLng initialCameraPosition = const LatLng(40.9856, 29.0694); // incirli sok
+  List<String> statusList = ['Sırada', 'Hazırlanıyor', 'Yola Çıktı', 'Adreste'];
 
-  Set<Marker> createMarker() {
-    return <Marker>{
-      Marker(
-          infoWindow: const InfoWindow(title: "Hakan"),
-          markerId: const MarkerId("1"),
-          //position: _initalCameraPosition.target,
-          position: const LatLng(40.9817, 29.0310),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueCyan)),
-      Marker(
-          infoWindow: const InfoWindow(title: "Harun"),
-          markerId: const MarkerId("2"),
-          position: const LatLng(40.987384, 29.0263703),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure)),
-      Marker(
-          infoWindow: const InfoWindow(title: "Rita"),
-          markerId: const MarkerId("3"),
-          position: const LatLng(40.9777779, 29.0362482),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure)),
-    };
+  Future<void> setMarkerIcon() async {
+    _markerIcon =
+        await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AppConstants.mapsIcon);
+  }
+
+  /// Event geldiğinde Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
+  void updateMarkerLatLng(LocationModel result) {
+    final double lat = double.tryParse(result.latitude ?? '0') ?? 0;
+    final double long = double.tryParse(result.longitude ?? '0') ?? 0;
+    final LatLng latlng = LatLng(lat, long);
+
+    controller?.animateCamera(CameraUpdate.newLatLng(latlng));
+    marker = Marker(
+        markerId: const MarkerId(""),
+        position: latlng,
+        //infoWindow: InfoWindow(title: result.kurye),
+        //rotation: newLocalData?.heading ?? 0,
+        draggable: false,
+        zIndex: 2,
+        flat: true,
+        icon: _markerIcon,
+        anchor: const Offset(0.5, 0.5));
+
+    notifyListeners();
+  }
+
+  ///  send to  messenger  [DeliveryStatusCardWidget]
+  void deliveryStatus(BuildContext context, String messenger) {
+    DeliveryStatusCardWidget(messenger: messenger).show(context);
+
+    if (currentIndex == 3) currentIndex = -1;
+    currentIndex += 1;
   }
 }

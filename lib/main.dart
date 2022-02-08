@@ -1,15 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'feature/maps/view/map_view.dart';
-import 'feature/pusher/view/pusher_client_view.dart';
-
-//import 'map_sample.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+
+import 'feature/maps/view/maps_view.dart';
+import 'feature/maps/viewmodel/map_view_model.dart';
+import 'product/init/theme/theme_manager.dart';
 
 Future<void> main() async {
   await initApp();
-  runApp(const MyApp());
+
+  runApp(ChangeNotifierProvider(
+      create: (context) => MapViewModel(), builder: (context, child) => const MyApp()));
 }
 
 Future<void> initApp() async {
@@ -24,11 +27,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Material App',
-      debugShowCheckedModeBanner: false,
-      //home: PusherClientView(),
-      home: MapsView(),
-    );
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Maps',
+        theme: ThemeManager().appTheme,
+        home: const MapsView());
   }
 }
