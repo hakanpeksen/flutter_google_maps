@@ -1,10 +1,24 @@
 # flutter_google_maps
 
-A new Flutter project.
+Google Maps Api ve websocket kullanımı  ile sipariş uygulaması örneği yaptım
+State Management olarak Provider paketi kullanıldı
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Uygulama açıldığında location izni istenir
+Pusher servisden 2 tane event dinliyoruz, bunlar Status ve Location eventleridir
+Pusher Event => StreamController => StreamBuilder => DeliveryStatusCardWidget(data yı alır) => Ekrana messenger ı basar
+Örnek: Status eventinde olay akışı şu şekilde olur
+ 1- her event geldiğinde pusher servis MapViewModel de bulunan ilgili methoda event mesaj parametresini
+gönderir, bir de Stream tipinde statusController oluşturdum, ve Stream e bu data aktarılır
+2- bu method ise gelen parametreyi DeliveryStatusCardWidget'ına  gönderir
+3- maps_view sayfasında StreamBuilder widgetı ile bu data dinlenir,
+4- DeliveryStatusCardWidget(messenger: data).show(context); widget ına Stream den gelen datayı yollar
+
+
+
+
+
 
 A few resources to get you started if this is your first Flutter project:
 

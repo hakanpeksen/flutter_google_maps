@@ -7,6 +7,7 @@ Column _buildCircleColumn(MapViewModel model, int index, String e, BuildContext 
       _buildCircleContainer(model, index, context),
 
       SizedBox(height: context.dynamicHeight(0.02)),
+      // (index e eşit olan circle mavi rengi alır)
       model.currentIndex == index
           ? _buildStatusText(e, context, context.colorScheme.primary) // AppColors.mainBlue,
           : _buildStatusText(e, context, context.colorScheme.secondary), // AppColors.grey,

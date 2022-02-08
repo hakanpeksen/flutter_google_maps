@@ -60,9 +60,8 @@ class PusherService extends IPusherService {
       final data = event?.data ?? '';
       final messenger = OrderStatus.fromJson(json.decode(data)).kurye.toString();
       statusController.sink.add(messenger);
-
-      /// send to [statusEvent] Update Status Card
-      context.read<MapViewModel>().deliveryStatus(context, messenger);
+      // Update Status Card Circle (index e eşit olan circle mavi rengi alır)
+      context.read<MapViewModel>().changeStatusListIndex();
     });
 
     /// Location Event

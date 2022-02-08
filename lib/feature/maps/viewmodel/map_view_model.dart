@@ -16,6 +16,12 @@ class MapViewModel extends ChangeNotifier {
 
   List<String> statusList = ['Sırada', 'Hazırlanıyor', 'Yola Çıktı', 'Adreste'];
 
+  // Update Status Card Circle (index e eşit olan circle mavi rengi alır)
+  void changeStatusListIndex() {
+    if (currentIndex == 3) currentIndex = -1;
+    currentIndex += 1;
+  }
+
   Future<void> setMarkerIcon() async {
     _markerIcon =
         await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AppConstants.mapsIcon);
@@ -40,13 +46,5 @@ class MapViewModel extends ChangeNotifier {
         anchor: const Offset(0.5, 0.5));
 
     notifyListeners();
-  }
-
-  ///  send to  messenger  [DeliveryStatusCardWidget]
-  void deliveryStatus(BuildContext context, String messenger) {
-    DeliveryStatusCardWidget(messenger: messenger).show(context);
-
-    if (currentIndex == 3) currentIndex = -1;
-    currentIndex += 1;
   }
 }
