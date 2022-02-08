@@ -59,9 +59,8 @@ class _MapsViewState extends State<MapsView> {
       title: Text(_appTitle),
       actions: [
         Padding(
-          padding: context.paddingLow, //  EdgeInsets.all(height * 0.01);
-          child: _buildStreamLocationBuilder(),
-        )
+            padding: context.paddingLow, //  EdgeInsets.all(height * 0.01);
+            child: _buildStreamLocationBuilder())
       ],
     );
   }

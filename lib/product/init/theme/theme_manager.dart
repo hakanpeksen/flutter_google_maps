@@ -7,7 +7,8 @@ class ThemeManager {
     textTheme: const TextTheme(
       headline1: TextStyle(fontSize: 70, fontWeight: FontWeight.w300),
       subtitle1: TextStyle(fontSize: 10, color: AppColors.white),
-      headline4: TextStyle(fontSize: 14, color: AppColors.primaryColor),
+      headline4:
+          TextStyle(fontSize: 14, color: AppColors.primaryColor, fontWeight: FontWeight.bold),
       headline6:
           TextStyle(fontSize: 22, color: AppColors.primaryColor, fontWeight: FontWeight.bold),
       caption: TextStyle(fontSize: 8, color: AppColors.mainBlue, fontWeight: FontWeight.bold),
