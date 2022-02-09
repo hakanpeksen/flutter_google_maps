@@ -20,50 +20,46 @@ class DeliveryStatusCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = context.read<MapViewModel>();
 
-    return Column(
-      children: [
+    return _buildColumnView(model, context);
+  }
+
+  Column _buildColumnView(MapViewModel model, BuildContext context) => Column(children: [
         Padding(
           padding: PaddingValue.xSmallPadding.rawValue,
-          child: _buildCardContainer(context, model),
-        ),
-      ],
-    );
-  }
+          child: _buildWrapCardContainer(model, context),
+        )
+      ]);
 
   // Card Container ın genel tasarımı
-  Container _buildCardContainer(BuildContext context, MapViewModel model) {
-    return Container(
-      color: context.colorScheme.primaryContainer,
-      height: context.dynamicHeight(0.28),
-      child: Padding(
-        padding: PaddingValue.xSmallPadding.rawValue, // EdgeInsets.all(15);
-        child: Column(
-          children: [
-            ///  4 adet circle ve textlerin  oluşturulduğu [Row] tasarımı
-            Expanded(flex: 2, child: _buildCircleRow(model, context)),
-            const Spacer(),
-            // Ekranda kurye ismi yazdırılır
-            Expanded(
-                flex: 3,
-                child: _buildStatusCardImageAndText(model, context, messenger, messengerLoading)),
-            const Spacer(),
-          ],
+  Container _buildWrapCardContainer(MapViewModel model, BuildContext context) => Container(
+        color: context.colorScheme.primaryContainer,
+        height: context.dynamicHeight(0.28),
+        child: Padding(
+          padding: PaddingValue.xSmallPadding.rawValue, // EdgeInsets.all(15);
+          child: Column(
+            children: [
+              ///  4 adet circle ve textlerin  oluşturulduğu [Row] tasarımı
+              Expanded(flex: 2, child: _buildWrapCircleRow(model, context)),
+              const Spacer(),
+              // Ekranda kurye ismi yazdırılır
+              Expanded(
+                  flex: 3,
+                  child: _buildStatusCardImageAndText(model, context, messenger, messengerLoading)),
+              const Spacer(),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   ///  4 adet circle ve textlerin  oluşturulduğu [Row] tasarımı
-  Row _buildCircleRow(MapViewModel model, BuildContext context) {
-    return Row(
-      children: model.statusList.map(
-        (e) {
-          final int index = model.statusList.indexOf(e);
-          return _buildCircleColumn(model, index, e, context);
-        },
-      ).toList(),
-    );
-  }
+  Row _buildWrapCircleRow(MapViewModel model, BuildContext context) => Row(
+        children: model.statusList.map(
+          (e) {
+            final int index = model.statusList.indexOf(e);
+            return _buildCircleColumn(model, index, e, context);
+          },
+        ).toList(),
+      );
 }
 
 extension DeliveryStatusCardExtension on DeliveryStatusCardWidget {

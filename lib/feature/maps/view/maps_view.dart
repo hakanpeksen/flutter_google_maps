@@ -48,29 +48,25 @@ class _MapsViewState extends State<MapsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildBodyView(),
-    );
+    return buildScaffold();
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: Text(_appTitle),
-      actions: [
+  Scaffold buildScaffold() => Scaffold(
+        appBar: _buildAppBar,
+        body: _buildBodyView(),
+      );
+
+  AppBar get _buildAppBar => AppBar(title: Text(_appTitle), actions: [
         Padding(
-            padding: context.paddingLow, //  EdgeInsets.all(height * 0.01);
-            child: _buildStreamLocationBuilder())
-      ],
-    );
-  }
+          padding: context.paddingLow, //  EdgeInsets.all(height * 0.01);
+          child: _buildStreamLocationBuilder(),
+        )
+      ]);
 
-  Stack _buildBodyView() {
-    return Stack(children: [
-      _buildGoogleMap(),
-      Positioned(right: 0, left: 0, bottom: 0, child: _buildStreamStatusBuilder()),
-    ]);
-  }
+  Stack _buildBodyView() => Stack(children: [
+        _buildGoogleMap(),
+        Positioned(right: 0, left: 0, bottom: 0, child: _buildStreamStatusBuilder()),
+      ]);
 
   GoogleMap _buildGoogleMap() {
     final mapModel = context.watch<MapViewModel>();
@@ -82,7 +78,7 @@ class _MapsViewState extends State<MapsView> {
         context.read<MapViewModel>().controller = controller;
       },
       myLocationEnabled: true,
-      markers: Set.of((mapModel.marker != null) ? [mapModel.marker!] : []),
+      markers: setMarker(mapModel),
       tiltGesturesEnabled: true,
       compassEnabled: true,
       scrollGesturesEnabled: true,
@@ -90,47 +86,42 @@ class _MapsViewState extends State<MapsView> {
     );
   }
 
-  Center _loadingWidget() {
-    return const Center(child: CircularProgressIndicator());
-  }
+  Set<Marker> setMarker(MapViewModel mapModel) =>
+      Set.of((mapModel.marker != null) ? [mapModel.marker!] : []);
 
-  Center _notFoundTextWidget() {
-    return const Center(child: Text('No data'));
-  }
+  Center get _loadingWidget => const Center(child: CircularProgressIndicator());
 
-  StreamBuilder<String> _buildStreamStatusBuilder() {
-    return StreamBuilder<String>(
-      stream: _pusherService.stream,
-      builder: (context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return _loadingWidget();
-        }
-        if (snapshot.connectionState == ConnectionState.active && snapshot.hasData) {
-          final data = snapshot.data ?? '';
-          // Card da  bulunan 4 adet circle'ın Event geldiği anda mavi rengi alması sağlanır
-          return DeliveryStatusCardWidget(messenger: data).show(context);
-        }
-        return _notFoundTextWidget();
-      },
-    );
-  }
+  Center get _notFoundTextWidget => const Center(child: Text('No data'));
 
-  StreamBuilder<LocationModel> _buildStreamLocationBuilder() {
-    return StreamBuilder<LocationModel>(
-      stream: _pusherService.locationStream,
-      builder: (context, AsyncSnapshot<LocationModel> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return _loadingWidget();
-        }
-        if (snapshot.connectionState == ConnectionState.active && snapshot.hasData) {
-          final data = snapshot.data;
-          return Center(
-            child: Text('Tahmini Süre: ${data?.estimated.toString() ?? ''}',
-                style: context.textTheme.headline4),
-          );
-        }
-        return _notFoundTextWidget();
-      },
-    );
-  }
+  StreamBuilder<String> _buildStreamStatusBuilder() => StreamBuilder<String>(
+        stream: _pusherService.stream,
+        builder: (context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return _loadingWidget;
+          }
+          if (snapshot.connectionState == ConnectionState.active && snapshot.hasData) {
+            final data = snapshot.data ?? '';
+            // Card da  bulunan 4 adet circle'ın Event geldiği anda mavi rengi alması sağlanır
+            return DeliveryStatusCardWidget(messenger: data).show(context);
+          }
+          return _notFoundTextWidget;
+        },
+      );
+
+  StreamBuilder<LocationModel> _buildStreamLocationBuilder() => StreamBuilder<LocationModel>(
+        stream: _pusherService.locationStream,
+        builder: (context, AsyncSnapshot<LocationModel> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return _loadingWidget;
+          }
+          if (snapshot.connectionState == ConnectionState.active && snapshot.hasData) {
+            final data = snapshot.data;
+            return Center(
+              child: Text('Tahmini Süre: ${data?.estimated.toString() ?? ''}',
+                  style: context.textTheme.headline4),
+            );
+          }
+          return _notFoundTextWidget;
+        },
+      );
 }
