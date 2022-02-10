@@ -1,18 +1,62 @@
 # flutter_google_maps
 
-Google Maps Api ve websocket kullanımı  ile sipariş uygulaması örneği yaptım
+### Google Maps Api ve websocket kullanımı ile sipariş uygulaması örneği yaptım
+
 State Management olarak Provider paketi kullanıldı
- ## Getting Started
 
+## Getting Started
 
-Uygulama açıldığında location izni istenir
-Pusher servisden 2 tane event dinliyoruz, bunlar Status ve Location eventleridir
-Pusher Event => StreamController => StreamBuilder => DeliveryStatusCardWidget(data yı alır) => Ekrana messenger ı basar
-Örnek: Status eventinde olay akışı şu şekilde olur
- 1- pusher servisde her event geldiğinde;
-   Stream tipinde statusController oluşturdum, ve Stream'e event mesajı aktarılır,
+#### Uygulama açıldığında;
 
-   maps_view sayfasında StreamBuilder widgetı ile event mesajı dinlenir,
-   StreamBuilder widgetı ise DeliveryStatusCardWidget'ına Stream den gelen datayı yollar ve bu widget ekranda oluşturulur
+- location izni istenir,
+- maps_view sayfasında, location_service sayfasında bulunan getPermission methodu çağırılır,
+- maps_view sayfası ekrana gelir,
+- Maps üzerinde bulunan marker Image'ı setlenir,
 
-   MapViewModel de bulunan changeStatusListIndex methodu tetiklenir (view tarafında index e eşit olan circle mavi rengi alır, status'ün durumu belli olur)
+- pusher_service sayfasından, Status ve Location olmak üzere 2 tane event dinlenir,
+
+#### Status eventinde olay akışı şu şekilde olur;
+
+channel.bind() methodun'dan her event geldiğinde;
+
+- Stream tipinde oluşturduğum statusController'a bu event mesajı aktarılır,
+- maps_view sayfasında StreamBuilder widgetı ile event mesajı dinlenir,
+- StreamBuilder widgetı ile de DeliveryStatusCardWidget'ına Stream den gelen datayı yollar
+- Loading Widget'ının yerine, bu widget ekranda oluşturulur.
+- ayrıca map_view_model sayfasında bulunan changeStatusListIndex methodu tetiklenir
+- (view tarafında bu index e eşit olan circle mavi rengi alır, status'ün durumu belli olur)
+
+#### Location eventinde olay akışı şu şekilde olur;
+
+- Stream tipinde oluşturduğum locationController'a bu event mesajı aktarılır,
+- maps_view sayfasında StreamBuilder widgetı ile event mesajı dinlenir,
+- Ekranın üst kısmında olan Tahmini Süre bilgisi ekrana gelir
+- ayrıca map_view_model sayfasında bulunan updateMarkerLatLng methodu tetiklenir
+- (view tarafında \_buildGoogleMap() widgetındaki marker değeri güncellenir, Maps üzerindeki Marker'ın yer değiştirmesi sağlanır)
+
+## Olay Akışı:
+
+Pusher Event => StreamController => StreamBuilder => DeliveryStatusCardWidget(data yı alır) => Ekranı oluşturur
+
+### Screenshots
+<table>
+   <thead>
+      <tr>
+         <th></th>
+         <th></th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td><img src="./screenshots/Screenshot-1.png" style="max-width: 100%;"></td>
+         <td><img src="./screenshots/Screenshot-2.png" style="max-width: 100%;"></td>
+      </tr>
+       <tr>
+         <td><img src="./screenshots/Screenshot-3.png" style="max-width: 100%;"></td>
+         <td><img src="./screenshots/Screenshot-4.png" style="max-width: 100%;"></td>
+      </tr>
+        <tr>
+         <td><img src="./screenshots/Screenshot-5.png" style="max-width: 100%;"></td>
+      </tr>
+   </tbody>
+</table>

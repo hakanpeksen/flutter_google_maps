@@ -13,9 +13,8 @@ dependencies:
 
   # Google Maps
   google_maps_flutter: ^2.1.1
-  flutter_polyline_points: ^1.0.0
 
-  #State
+   #State
   provider: ^6.0.2
 
   # Location Permission
