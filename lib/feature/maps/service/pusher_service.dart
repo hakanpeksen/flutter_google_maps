@@ -72,7 +72,7 @@ class PusherService extends IPusherService {
       //sink sayesinde akışa yoluyoruz.
       locationController.sink.add(result);
 
-      /// Event geldiğinde Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
+      ///  Event geldiğinde [GoogleMapsCustomWidget] da bulunan Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
       context.read<MapViewModel>().updateMarkerLatLng(result);
     });
   }

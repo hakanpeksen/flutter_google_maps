@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:kartal/kartal.dart';
 
 import '../model/order_model.dart';
 import '../service/location_service.dart';
 import '../service/pusher_service.dart';
-import '../viewmodel/map_view_model.dart';
+
 import '../widgets/delivery_status_card_widget.dart';
+import '../widgets/google_maps_custom_widget.dart';
 
 class MapsView extends StatefulWidget {
   const MapsView({Key? key}) : super(key: key);
@@ -20,13 +19,10 @@ class _MapsViewState extends State<MapsView> {
   late final LocationService _locationService;
   late final IPusherService _pusherService;
   final String _appTitle = 'Delivery Example';
-  final double _cameraPositionZoom = 16;
 
   @override
   void initState() {
     super.initState();
-    // Maps de bulunan marker Image ı setlenir
-    context.read<MapViewModel>().setMarkerIcon();
     _locationService = LocationService();
     _locationService.getPermission();
 
@@ -40,9 +36,6 @@ class _MapsViewState extends State<MapsView> {
     // PusherService Stream'lerini  kapatıyoruz
     _pusherService.locationController.close();
     _pusherService.statusController.close();
-
-    // Maps controller ı kapatıyoruz
-    context.read<MapViewModel>().controller?.dispose();
     super.dispose();
   }
 
@@ -64,30 +57,9 @@ class _MapsViewState extends State<MapsView> {
       ]);
 
   Stack _buildBodyView() => Stack(children: [
-        _buildGoogleMap(),
+        const GoogleMapsCustomWidget(),
         Positioned(right: 0, left: 0, bottom: 0, child: _buildStreamStatusBuilder()),
       ]);
-
-  GoogleMap _buildGoogleMap() {
-    final mapModel = context.watch<MapViewModel>();
-    return GoogleMap(
-      initialCameraPosition:
-          CameraPosition(target: mapModel.initialCameraPosition, zoom: _cameraPositionZoom),
-      mapType: MapType.normal,
-      onMapCreated: (controller) {
-        context.read<MapViewModel>().controller = controller;
-      },
-      myLocationEnabled: true,
-      markers: setMarker(mapModel),
-      tiltGesturesEnabled: true,
-      compassEnabled: true,
-      scrollGesturesEnabled: true,
-      zoomGesturesEnabled: true,
-    );
-  }
-
-  Set<Marker> setMarker(MapViewModel mapModel) =>
-      Set.of((mapModel.marker != null) ? [mapModel.marker!] : []);
 
   Center get _loadingWidget => const Center(child: CircularProgressIndicator());
 

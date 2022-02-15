@@ -10,6 +10,7 @@ class MapViewModel extends ChangeNotifier {
   Marker? marker;
   late BitmapDescriptor _markerIcon;
   LatLng initialCameraPosition = const LatLng(40.9817, 29.0310);
+  final double cameraPositionZoom = 16;
 
   /// [DeliveryStatusCardWidget] Status list
   int currentIndex = -1;
@@ -27,7 +28,7 @@ class MapViewModel extends ChangeNotifier {
         await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AppConstants.mapsIcon);
   }
 
-  /// Event geldiğinde Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
+  /// Event geldiğinde [GoogleMapsCustomWidget] da bulunan Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
   void updateMarkerLatLng(LocationModel result) {
     final double lat = double.tryParse(result.latitude ?? '0') ?? 0;
     final double long = double.tryParse(result.longitude ?? '0') ?? 0;
