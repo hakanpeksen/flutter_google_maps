@@ -20,7 +20,7 @@ class _MapsViewState extends State<MapsView> {
   late final LocationService _locationService;
   late final IPusherService _pusherService;
   final String _appTitle = 'Delivery Example';
-  final double _cameraPositionZoom = 17;
+  final double _cameraPositionZoom = 16;
 
   @override
   void initState() {

@@ -16,7 +16,7 @@ import '../model/order_model.dart';
 abstract class IPusherService {
   late Channel channel;
   late PusherClient pusher;
-  //final String appKey = dotenv.env['PUSHER_APPKEY'].toString();
+  final String appKey = dotenv.env['PUSHER_APPKEY'].toString();
 
   ///  StatusContoller
   final statusController = StreamController<String>();
@@ -38,7 +38,7 @@ class PusherService extends IPusherService {
   @override
   void initPusher() {
     pusher = PusherClient(
-        "7e367ea7d05399a20695",
+        appKey,
         PusherOptions(
             host: AppConstants.host, wsPort: 80, cluster: AppConstants.cluster, encrypted: false),
         enableLogging: true);
