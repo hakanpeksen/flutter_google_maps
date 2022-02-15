@@ -1,4 +1,4 @@
-part of 'delivery_status_card_widget.dart';
+part of 'delivery_status_card.dart';
 
 Column _buildCircleColumn(MapViewModel model, int index, String e, BuildContext context) {
   return Column(
@@ -36,34 +36,6 @@ BoxDecoration buildBoxDecoration(MapViewModel model, int index, BuildContext con
 Text _buildStatusText(String e, BuildContext context, Color textColor) =>
     Text(e.toString(), style: context.textTheme.subtitle2?.copyWith(color: textColor));
 
-// Ekranda kurye ismi yazdırılır
-Card _buildStatusCardImageAndText(
-        MapViewModel model, BuildContext context, String messenger, String messengerLoading) =>
-    Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: CircularBorderRadius.six()), // Sizes.six:6
-        child: Padding(
-          padding: PaddingValue.xxSmallPadding.rawValue, // EdgeInsets.only(5);
-          child: Row(children: [
-            buildCircleAvatarImage(model),
-            SizedBox(width: context.dynamicWidth(0.02)),
-            model.currentIndex == 0
-                ? buildMessengerText(messengerLoading, context)
-                : buildMessengerText(messenger, context),
-          ]),
-        ));
-
 // Card da bulunan kurye ismi, 'kurye bekleniyor' kısmını  oluşturur
 Text buildMessengerText(String e, BuildContext context) =>
     Text(e, style: context.textTheme.subtitle2);
-
-/// [model.currentIndex == 0] =>  ilk Event geldiğinde default image ve
-//bekleniyor yazısının gösterimi için kullanıldı
-CircleAvatar buildCircleAvatarImage(MapViewModel model) => CircleAvatar(
-    child: circleAvatarChild(model),
-    backgroundColor: Colors.transparent,
-    radius: Sizes.buttonSize.rawValue());
-
-Widget circleAvatarChild(MapViewModel model) => model.currentIndex == 0
-    ? ClipOval(child: Image.asset(AppConstants.deliveryDefaultUserImage))
-    : ClipOval(child: Image.asset(AppConstants.deliveryUserImage));

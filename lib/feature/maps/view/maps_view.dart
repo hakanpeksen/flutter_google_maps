@@ -5,8 +5,8 @@ import '../model/order_model.dart';
 import '../service/location_service.dart';
 import '../service/pusher_service.dart';
 
-import '../widgets/delivery_status_card_widget.dart';
-import '../widgets/google_maps_custom_widget.dart';
+import '../widgets/delivery_status_card.dart';
+import '../widgets/custom_google_maps.dart';
 
 class MapsView extends StatefulWidget {
   const MapsView({Key? key}) : super(key: key);
@@ -57,7 +57,7 @@ class _MapsViewState extends State<MapsView> {
       ]);
 
   Stack _buildBodyView() => Stack(children: [
-        const GoogleMapsCustomWidget(),
+        const CustomGoogleMaps(),
         Positioned(right: 0, left: 0, bottom: 0, child: _buildStreamStatusBuilder()),
       ]);
 
@@ -74,7 +74,7 @@ class _MapsViewState extends State<MapsView> {
           if (snapshot.connectionState == ConnectionState.active && snapshot.hasData) {
             final data = snapshot.data ?? '';
             // Card da  bulunan 4 adet circle'ın Event geldiği anda mavi rengi alması sağlanır
-            return DeliveryStatusCardWidget(messenger: data);
+            return DeliveryStatusCard(messenger: data);
           }
           return _notFoundTextWidget;
         },

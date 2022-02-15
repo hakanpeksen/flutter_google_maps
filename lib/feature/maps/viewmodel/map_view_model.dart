@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../product/constants/app_constants.dart';
 import '../model/order_model.dart';
-import '../widgets/delivery_status_card_widget.dart';
+import '../widgets/delivery_status_card.dart';
 
 class MapViewModel extends ChangeNotifier {
   GoogleMapController? controller;
@@ -12,7 +12,7 @@ class MapViewModel extends ChangeNotifier {
   LatLng initialCameraPosition = const LatLng(40.9817, 29.0310);
   final double cameraPositionZoom = 16;
 
-  /// [DeliveryStatusCardWidget] Status list
+  /// [DeliveryStatusCard] Status list
   int currentIndex = -1;
 
   List<String> statusList = ['Sırada', 'Hazırlanıyor', 'Yola Çıktı', 'Adreste'];

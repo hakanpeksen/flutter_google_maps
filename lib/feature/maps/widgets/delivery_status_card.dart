@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../product/constants/app_constants.dart';
 import '../../../../product/init/utility/border_radius_utils.dart';
-import '../../../../product/init/utility/circular_border_radius.dart';
 import '../../../../product/init/utility/padding_utils.dart';
 import '../viewmodel/map_view_model.dart';
+import 'card_status_image.dart';
 
-part 'delivery_status_part_widget.dart';
+part 'delivery_status_part.dart';
 
-class DeliveryStatusCardWidget extends StatelessWidget {
+class DeliveryStatusCard extends StatelessWidget {
   final String messenger;
-  const DeliveryStatusCardWidget({Key? key, required this.messenger}) : super(key: key);
+  const DeliveryStatusCard({Key? key, required this.messenger}) : super(key: key);
 
   final String messengerLoading = 'Kurye Bekleniyor';
 
@@ -41,10 +40,11 @@ class DeliveryStatusCardWidget extends StatelessWidget {
               ///  4 adet circle ve textlerin  oluşturulduğu [Row] tasarımı
               Expanded(flex: 2, child: _buildWrapCircleRow(model, context)),
               const Spacer(),
-              // Ekranda kurye ismi yazdırılır
+              // Ekranda kurye Image'ını ve ismini gösterir
               Expanded(
                   flex: 3,
-                  child: _buildStatusCardImageAndText(model, context, messenger, messengerLoading)),
+                  child: CardStatusImage(
+                      model: model, messenger: messenger, messengerLoading: messengerLoading)),
               const Spacer(),
             ],
           ),

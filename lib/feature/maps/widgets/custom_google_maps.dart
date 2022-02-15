@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 
 import '../viewmodel/map_view_model.dart';
 
-class GoogleMapsCustomWidget extends StatefulWidget {
-  const GoogleMapsCustomWidget({Key? key}) : super(key: key);
+class CustomGoogleMaps extends StatefulWidget {
+  const CustomGoogleMaps({Key? key}) : super(key: key);
 
   @override
-  _GoogleMapsCustomWidgetState createState() => _GoogleMapsCustomWidgetState();
+  _CustomGoogleMapsState createState() => _CustomGoogleMapsState();
 }
 
-class _GoogleMapsCustomWidgetState extends State<GoogleMapsCustomWidget> {
+class _CustomGoogleMapsState extends State<CustomGoogleMaps> {
   @override
   void initState() {
     super.initState();
