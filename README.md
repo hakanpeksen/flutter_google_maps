@@ -6,6 +6,8 @@ State Management olarak Provider paketi kullanıldı
 
 ## Getting Started
 
+uygulamanın çalışabilmesi için [pusher.com ](https://pusher.com/)'dan appKey almanız gerekir.
+
 #### Uygulama açıldığında;
 
 - location izni istenir,
@@ -38,7 +40,30 @@ channel.bind() methodun'dan her event geldiğinde;
 
 Pusher Event => StreamController => StreamBuilder => DeliveryStatusCardWidget(data yı alır) => Ekranı oluşturur
 
+### Status Eventi json örneği
+
+Channel: order-1001,
+Event: status-update
+
+      {
+       "status":"Hazırlanıyor",
+       "kurye":"Ahmet"
+      }
+
+### Location Eventi json örneği
+
+Channel: order-1001,
+Event: location-update
+
+      {
+        "kurye":"Ahmet",
+        "latitude": "40.973488",
+        "longitude": "29.039739",
+        "estimated": 5
+       }
+
 ### Screenshots
+
 <table>
    <thead>
       <tr>
