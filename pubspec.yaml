@@ -27,7 +27,10 @@ dependencies:
   flutter_dotenv: ^5.0.2
 
   # web socket library
-  pusher_client: ^2.0.0
+  pusher_client: 
+    git:
+      url: git://github.com/thijskuilman/pusher_client.git
+  
 
   # Json Serializing
   json_annotation: ^4.4.0
@@ -48,5 +51,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - .env
-    - assets/images/
+     - assets/images/

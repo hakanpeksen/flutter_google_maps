@@ -61,9 +61,3 @@ class DeliveryStatusCardWidget extends StatelessWidget {
         ).toList(),
       );
 }
-
-extension DeliveryStatusCardExtension on DeliveryStatusCardWidget {
-  DeliveryStatusCardWidget show<T>(BuildContext context) {
-    return this;
-  }
-}

@@ -20,7 +20,7 @@ class _MapsViewState extends State<MapsView> {
   late final LocationService _locationService;
   late final IPusherService _pusherService;
   final String _appTitle = 'Delivery Example';
-  final double _cameraPositionZoom = 15;
+  final double _cameraPositionZoom = 17;
 
   @override
   void initState() {
@@ -102,7 +102,7 @@ class _MapsViewState extends State<MapsView> {
           if (snapshot.connectionState == ConnectionState.active && snapshot.hasData) {
             final data = snapshot.data ?? '';
             // Card da  bulunan 4 adet circle'ın Event geldiği anda mavi rengi alması sağlanır
-            return DeliveryStatusCardWidget(messenger: data).show(context);
+            return DeliveryStatusCardWidget(messenger: data);
           }
           return _notFoundTextWidget;
         },

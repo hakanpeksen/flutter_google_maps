@@ -1,0 +1,81 @@
+PODS:
+  - device_info (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - google_maps_flutter (0.0.1):
+    - Flutter
+    - GoogleMaps
+  - GoogleMaps (6.0.1):
+    - GoogleMaps/Maps (= 6.0.1)
+  - GoogleMaps/Base (6.0.1)
+  - GoogleMaps/Maps (6.0.1):
+    - GoogleMaps/Base
+  - location (0.0.1):
+    - Flutter
+  - NWWebSocket (0.5.2)
+  - package_info_plus (0.4.5):
+    - Flutter
+  - pusher_client (2.0.0):
+    - Flutter
+    - PusherSwift (~> 9.0)
+  - PusherSwift (9.2.2):
+    - NWWebSocket (~> 0.5.2)
+    - TweetNacl (~> 1.0.0)
+  - share (0.0.1):
+    - Flutter
+  - TweetNacl (1.0.2)
+  - url_launcher_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - device_info (from `.symlinks/plugins/device_info/ios`)
+  - Flutter (from `Flutter`)
+  - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
+  - location (from `.symlinks/plugins/location/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
+  - pusher_client (from `.symlinks/plugins/pusher_client/ios`)
+  - share (from `.symlinks/plugins/share/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - GoogleMaps
+    - NWWebSocket
+    - PusherSwift
+    - TweetNacl
+
+EXTERNAL SOURCES:
+  device_info:
+    :path: ".symlinks/plugins/device_info/ios"
+  Flutter:
+    :path: Flutter
+  google_maps_flutter:
+    :path: ".symlinks/plugins/google_maps_flutter/ios"
+  location:
+    :path: ".symlinks/plugins/location/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
+  pusher_client:
+    :path: ".symlinks/plugins/pusher_client/ios"
+  share:
+    :path: ".symlinks/plugins/share/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+
+SPEC CHECKSUMS:
+  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  google_maps_flutter: abdb8dee6c52d4be36ad131ee6ebfacd14417c5a
+  GoogleMaps: c213fc2334b7374144cede914da779b99be0ab74
+  location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
+  NWWebSocket: 21f0c73639815da3272862c912275b26102aa80c
+  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
+  pusher_client: ed0c4db398a6fb9cd6e461c06da4e4d4258c4451
+  PusherSwift: 8b252244aca6a662572be48a97b756d14cd7542c
+  share: 0b2c3e82132f5888bccca3351c504d0003b3b410
+  TweetNacl: 3abf4d1d2082b0114e7a67410e300892448951e6
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
+
+PODFILE CHECKSUM: 6d3402c0f2e9dece1f645b12c9fd3589000baa26
+
+COCOAPODS: 1.10.2
