@@ -34,7 +34,7 @@ channel.bind() methodun'dan her event geldiğinde;
 - maps_view sayfasında StreamBuilder widgetı ile event mesajı dinlenir,
 - Ekranın üst kısmında olan Tahmini Süre bilgisi ekrana gelir
 - ayrıca map_view_model sayfasında bulunan updateMarkerLatLng methodu tetiklenir
-- (view tarafında \_buildGoogleMap() widgetındaki marker değeri güncellenir, Maps üzerindeki Marker'ın yer değiştirmesi sağlanır)
+- view tarafında CustomGoogleMaps widgetındaki marker değeri güncellenir, Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
 
 ## Olay Akışı:
 
