@@ -22,7 +22,7 @@ class LocationStreamBuilder extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.active && snapshot.hasData) {
           final data = snapshot.data;
           return Center(
-            child: Text('Tahmini Süre: ${data?.estimated.toString() ?? ''}',
+            child: Text('Tahmini Süre: ${data?.estimated.toString() ?? ''} dk',
                 style: context.textTheme.headline4),
           );
         }

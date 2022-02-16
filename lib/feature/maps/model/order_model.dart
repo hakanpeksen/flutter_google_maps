@@ -5,9 +5,9 @@ part 'order_model.g.dart';
 @JsonSerializable(createToJson: false)
 class OrderStatus {
   final String? status;
-  final String? kurye;
+  final String? rider;
 
-  OrderStatus({this.status, this.kurye});
+  OrderStatus({this.status, this.rider});
 
   factory OrderStatus.fromJson(Map<String, dynamic> data) => _$OrderStatusFromJson(data);
 }
