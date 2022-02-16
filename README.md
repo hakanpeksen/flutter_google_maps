@@ -57,8 +57,8 @@ Event: location-update
 
       {
         "kurye":"Ahmet",
-        "latitude": "40.973488",
-        "longitude": "29.039739",
+        "latitude": 40.973488,
+        "longitude": 29.039739,
         "estimated": 5
        }
 

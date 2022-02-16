@@ -30,14 +30,14 @@ class MapViewModel extends ChangeNotifier {
 
   /// Event geldiğinde [GoogleMapsCustomWidget] da bulunan Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
   void updateMarkerLatLng(LocationModel result) {
-    final double lat = double.tryParse(result.latitude ?? '0') ?? 0;
-    final double long = double.tryParse(result.longitude ?? '0') ?? 0;
-    final LatLng latlng = LatLng(lat, long);
+    // final double lat = double.tryParse(result.latitude ?? '0') ?? 0;
+    // final double long = double.tryParse(result.longitude ?? '0') ?? 0;
+    // final LatLng latlng = LatLng(lat, long);
 
-    controller?.animateCamera(CameraUpdate.newLatLng(latlng));
+    controller?.animateCamera(CameraUpdate.newLatLng(result.latlong));
     marker = Marker(
-        markerId: const MarkerId(""),
-        position: latlng,
+        markerId: MarkerId(result.latitude.toString()),
+        position: result.latlong,
         //infoWindow: InfoWindow(title: result.kurye),
         //rotation: newLocalData?.heading ?? 0,
         draggable: false,
