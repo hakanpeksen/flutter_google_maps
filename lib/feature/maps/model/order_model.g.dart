@@ -17,10 +17,3 @@ LocationModel _$LocationModelFromJson(Map<String, dynamic> json) =>
       longitude: (json['longitude'] as num?)?.toDouble(),
       estimated: json['estimated'] as int?,
     );
-
-Map<String, dynamic> _$LocationModelToJson(LocationModel instance) =>
-    <String, dynamic>{
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'estimated': instance.estimated,
-    };

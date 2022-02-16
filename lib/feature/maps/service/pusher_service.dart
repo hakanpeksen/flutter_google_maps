@@ -69,10 +69,10 @@ class PusherService extends IPusherService {
       log(event?.data ?? '');
       final data = event?.data ?? '';
       LocationModel result = LocationModel.fromJson(json.decode(data));
-      //sink sayesinde akışa yoluyoruz.
+      // sink sayesinde akışa yoluyoruz.
       locationController.sink.add(result);
 
-      ///  Event geldiğinde [GoogleMapsCustomWidget] da bulunan Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
+      /// Event geldiğinde [GoogleMapsCustomWidget] da bulunan Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
       context.read<MapViewModel>().updateMarkerLatLng(result);
     });
   }

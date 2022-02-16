@@ -12,7 +12,7 @@ class OrderStatus {
   factory OrderStatus.fromJson(Map<String, dynamic> data) => _$OrderStatusFromJson(data);
 }
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class LocationModel {
   final double? latitude;
   final double? longitude;

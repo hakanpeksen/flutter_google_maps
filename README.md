@@ -22,19 +22,19 @@ uygulamanın çalışabilmesi için [pusher.com ](https://pusher.com/)'dan appKe
 channel.bind() methodun'dan her event geldiğinde;
 
 - Stream tipinde oluşturduğum statusController'a bu event mesajı aktarılır,
-- maps_view sayfasında StreamBuilder widgetı ile event mesajı dinlenir,
-- StreamBuilder widgetı ile de DeliveryStatusCardWidget'ına Stream den gelen datayı yollar
-- Loading Widget'ının yerine, bu widget ekranda oluşturulur.
-- ayrıca map_view_model sayfasında bulunan changeStatusListIndex methodu tetiklenir
+- maps_view sayfasında StatusStreamBuilder widgetı ile event mesajı dinlenir,
+- StatusStreamBuilder widgetı ile de DeliveryStatusCardWidget'ına Stream den gelen datayı yollar,
+- LoadingCenter widget'ının yerine, bu widget ekranda oluşturulur.
+- ayrıca map_view_model sayfasında bulunan changeStatusListIndex methodu tetiklenir,
 - (view tarafında bu index e eşit olan circle mavi rengi alır, status'ün durumu belli olur)
 
 #### Location eventinde olay akışı şu şekilde olur;
 
 - Stream tipinde oluşturduğum locationController'a bu event mesajı aktarılır,
-- maps_view sayfasında StreamBuilder widgetı ile event mesajı dinlenir,
-- Ekranın üst kısmında olan Tahmini Süre bilgisi ekrana gelir
-- ayrıca map_view_model sayfasında bulunan updateMarkerLatLng methodu tetiklenir
-- view tarafında CustomGoogleMaps widgetındaki marker değeri güncellenir, Maps üzerindeki Marker'ın yer değiştirmesi sağlanır
+- maps_view sayfasında LocationStreamBuilder widgetı ile event mesajı dinlenir,
+- Ekranın üst kısmında olan Tahmini Süre bilgisi ekrana gelir,
+- ayrıca map_view_model sayfasında bulunan updateMarkerLatLng methodu tetiklenir,
+- view tarafında CustomGoogleMaps widgetındaki marker değeri güncellenir, Maps üzerindeki Marker'ın yer değiştirmesi sağlanır.
 
 ## Olay Akışı:
 
