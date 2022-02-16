@@ -19,7 +19,7 @@ Future<void> initApp() async {
   if (defaultTargetPlatform == TargetPlatform.android) {
     AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
   }
-  //await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: ".env");
 }
 
 class MyApp extends StatelessWidget {
