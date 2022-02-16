@@ -10,7 +10,7 @@ enum PaddingValue {
   pagePadding,
 }
 
-extension PaddingValueExtensin on PaddingValue {
+extension PaddingValueExtension on PaddingValue {
   EdgeInsetsGeometry get rawValue {
     switch (this) {
       case PaddingValue.defaultPadding:
