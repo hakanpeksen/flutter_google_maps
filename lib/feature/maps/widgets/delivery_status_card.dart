@@ -53,11 +53,10 @@ class DeliveryStatusCard extends StatelessWidget {
 
   ///  4 adet circle ve textlerin  oluşturulduğu [Row] tasarımı
   Row _buildWrapCircleRow(MapViewModel model, BuildContext context) => Row(
-        children: model.statusList.map(
-          (e) {
-            final int index = model.statusList.indexOf(e);
-            return _buildCircleColumn(model, index, e, context);
-          },
-        ).toList(),
-      );
+          children: model.statusList.map(
+        (e) {
+          final int index = model.statusList.indexOf(e);
+          return _buildCircleColumn(model, index, e, context);
+        },
+      ).toList());
 }

@@ -24,8 +24,8 @@ class MapViewModel extends ChangeNotifier {
   }
 
   Future<void> setMarkerIcon() async {
-    _markerIcon =
-        await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AppConstants.mapsIcon);
+    _markerIcon = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), AppConstant.instance.mapsIcon);
   }
 
   /// Event geldiğinde [GoogleMapsCustomWidget] da bulunan Maps üzerindeki Marker'ın yer değiştirmesi sağlanır

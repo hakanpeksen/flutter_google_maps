@@ -23,7 +23,7 @@ class CircleAvatarImage extends StatelessWidget {
 
   /// [model.currentIndex == 0] =>  ilk Event geldiğinde default image ve
   /// bekleniyor yazısının gösterimi için kullanıldı
-  Widget _circleAvatarImageChild(MapViewModel model) => model.currentIndex == 0
-      ? ClipOval(child: Image.asset(AppConstants.deliveryDefaultUserImage))
-      : ClipOval(child: Image.asset(AppConstants.deliveryUserImage));
+  Widget _circleAvatarImageChild(MapViewModel model) => model.currentIndex == kZero
+      ? ClipOval(child: Image.asset(AppConstant.instance.deliveryDefaultUserImage))
+      : ClipOval(child: Image.asset(AppConstant.instance.deliveryUserImage));
 }

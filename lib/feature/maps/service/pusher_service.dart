@@ -40,11 +40,14 @@ class PusherService extends IPusherService {
     pusher = PusherClient(
         appKey,
         PusherOptions(
-            host: AppConstants.host, wsPort: 80, cluster: AppConstants.cluster, encrypted: false),
+            host: AppConstant.instance.host,
+            wsPort: 80,
+            cluster: AppConstant.instance.cluster,
+            encrypted: false),
         enableLogging: true);
 
     // channel a abone ol
-    channel = pusher.subscribe(AppConstants.channelName);
+    channel = pusher.subscribe(AppConstant.instance.channelName);
 
     pusher.onConnectionStateChange((state) {
       log("previousState: ${state?.previousState}, currentState: ${state?.currentState}");
@@ -55,7 +58,7 @@ class PusherService extends IPusherService {
     });
 
     ///  Status Event
-    channel.bind(AppConstants.statusEvent, (PusherEvent? event) {
+    channel.bind(AppConstant.instance.statusEvent, (PusherEvent? event) {
       log(event?.data ?? '');
       final data = event?.data ?? '';
       final messenger = OrderStatus.fromJson(json.decode(data)).rider.toString();
@@ -65,7 +68,7 @@ class PusherService extends IPusherService {
     });
 
     /// Location Event
-    channel.bind(AppConstants.locationEvent, (PusherEvent? event) {
+    channel.bind(AppConstant.instance.locationEvent, (PusherEvent? event) {
       log(event?.data ?? '');
       final data = event?.data ?? '';
       LocationModel result = LocationModel.fromJson(json.decode(data));

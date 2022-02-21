@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../product/constants/app_constants.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../product/init/utility/circular_border_radius.dart';
@@ -31,9 +32,9 @@ class CardStatusImage extends StatelessWidget {
             // Kurye Image 'ını gösterir
             CircleAvatarImage(model: model),
             SizedBox(width: context.dynamicWidth(0.02)),
-            model.currentIndex == 0
-                ? buildMessengerText(messengerLoading, context)
-                : buildMessengerText(messenger, context),
+            model.currentIndex == kZero
+                ? buildStatusText(messengerLoading, context)
+                : buildStatusText(messenger, context),
           ]),
         ));
   }

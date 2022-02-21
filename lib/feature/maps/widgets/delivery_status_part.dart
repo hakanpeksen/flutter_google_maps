@@ -8,8 +8,10 @@ Column _buildCircleColumn(MapViewModel model, int index, String e, BuildContext 
       SizedBox(height: context.dynamicHeight(0.02)),
       //(index e eşit olan circle mavi rengi alır)
       model.currentIndex == index
-          ? _buildStatusText(e, context, context.colorScheme.primary) // AppColors.mainBlue,
-          : _buildStatusText(e, context, context.colorScheme.secondary), // AppColors.grey,
+          ? buildStatusText(e, context,
+              textColor: context.colorScheme.primary) // AppColors.mainBlue,
+          : buildStatusText(e, context,
+              textColor: context.colorScheme.secondary), // AppColors.grey,
     ],
   );
 }
@@ -32,10 +34,7 @@ BoxDecoration buildBoxDecoration(MapViewModel model, int index, BuildContext con
             ? context.colorScheme.primary
             : context.colorScheme.secondary);
 
-// Card da bulunan 4 adet status textleri  oluşturur
-Text _buildStatusText(String e, BuildContext context, Color textColor) =>
-    Text(e.toString(), style: context.textTheme.subtitle2?.copyWith(color: textColor));
-
+// Card da bulunan 4 adet status textleri  oluşturur,
 // Card da bulunan kurye ismi, 'kurye bekleniyor' kısmını  oluşturur
-Text buildMessengerText(String e, BuildContext context) =>
-    Text(e, style: context.textTheme.subtitle2);
+Text buildStatusText(String e, BuildContext context, {Color? textColor}) =>
+    Text(e.toString(), style: context.textTheme.subtitle2?.copyWith(color: textColor));
